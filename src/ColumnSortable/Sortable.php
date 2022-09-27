@@ -25,7 +25,7 @@ trait Sortable
      */
     public function scopeSortable($query, $defaultParameters = null)
     {
-        if (request()->allFilled(['sort', 'direction'])) { // allFilled() is macro
+        if (empty($defaultParameters) && request()->allFilled(['sort', 'direction'])) { // allFilled() is macro
             return $this->queryOrderBuilder($query, request()->only(['sort', 'direction']));
         }
 
